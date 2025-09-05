@@ -1,0 +1,65 @@
+<!-- Delete from local storage -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="myForm">
+        <label for="username">username</label>
+        <input type="text" name="username" />
+        <label for="email">email</label>
+        <input type="email" name="email" />
+        <label for="phone">phone</label>
+        <input type="tel" name="phone" />
+        <button type="submit">Submit</button>
+    </form>
+    <h3>User Details</h3>
+    <ul></ul>
+</body>
+
+<script>
+    const myForm = document.getElementById("myForm")
+    myForm.addEventListener("submit",handleFormSubmit)
+
+    function handleFormSubmit(event){
+        event.preventDefault();
+        const username = event.target.username.value 
+        const email = event.target.email.value 
+        const phone = event.target.phone.value 
+
+        const obj = {
+            username,email,phone
+        }
+
+        const stringObj = JSON.stringify(obj);
+        localStorage.setItem(email,stringObj);
+        displayUsers(obj)
+    }
+
+    function displayUsers(obj){
+        const ul = document.querySelector('ul')
+        const list = document.createElement('li');
+        console.log(list)
+        list.textContent = obj.username + " - " + obj.email + " - " + obj.phone
+
+        const deleteBtn = document.createElement('button')
+        deleteBtn.textContent = "Delete"
+
+        deleteBtn.addEventListener("click",() =>{
+            list.remove()
+            localStorage.removeItem(obj.email)
+        })
+        list.appendChild(deleteBtn)
+        ul.appendChild(list) 
+    }
+    
+</script>
+
+</html>

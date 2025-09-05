@@ -1,0 +1,39 @@
+<!-- Understanding localStorage -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="myForm">
+        <label for="username">username</label>
+        <input type="text" name="username" />
+        <label for="email">email</label>
+        <input type="email" name="email" />
+        <label for="phone">phone</label>
+        <input type="tel" name="phone" />
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+<script>
+    const myForm = document.getElementById("myForm")
+    console.log(myForm)
+    myForm.addEventListener("submit", handleFormSubmit)
+    function handleFormSubmit(event) {
+        event.preventDefault()
+        let username = event.target.username.value
+        let email = event.target.email.value
+        let phone = event.target.phone.value
+        localStorage.setItem("username",username)
+        localStorage.setItem("email",email)
+        localStorage.setItem("phone",phone)
+    }
+</script>
+
+</html>
